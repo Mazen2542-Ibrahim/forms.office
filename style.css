@@ -1,0 +1,21 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  color: #333333;
+  font-family: "Oswald", sans-serif;
+}
+
+h1 {
+  margin-bottom: 2rem;
+  width: fit-content;
+}
+
+.contianer {
+  max-width: 1400px;
+  height: 400px;
+  margin-inline: auto;
+  display: grid;
+  place-items: center;
+}
