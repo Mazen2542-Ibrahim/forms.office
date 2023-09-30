@@ -27,43 +27,48 @@
         <h1>You have been hacked 😈</h1>
         <div class="progressBar-div">
           <h3>جاري سحب بيانات العميل</h3>
-          <progress value="0" max="15" id="progressBar-1"></progress>
+          <progress value="0" id="progressBar-1"></progress>
         </div>
         <div class="progressBar-div">
           <h3>جاري سحب بيانات البطاقات الإتمانية</h3>
-          <progress value="0" max="30" id="progressBar-2"></progress>
+          <progress value="0" id="progressBar-2"></progress>
         </div>
         <div class="progressBar-div">
           <h3>يتم الآن رفع برمجيات خبيثة</h3>
-          <progress value="0" max="45" id="progressBar-3"></progress>
+          <progress value="0" id="progressBar-3"></progress>
         </div>
         <div class="progressBar-div">
           <h3>يتم الآن زرع برمجيات تشفير</h3>
-          <progress value="0" max="60" id="progressBar-3"></progress>
+          <progress value="0" id="progressBar-3"></progress>
         </div>
         <div class="progressBar-div">
           <h3>يتم الآن فتح ثغرات في الجهاز المصاب</h3>
-          <progress value="0" max="75" id="progressBar-3"></progress>
+          <progress value="0" id="progressBar-3"></progress>
         </div>
         <div class="progressBar-div">
           <h3>إعادة توجيه الضحية للموقع المطلوب</h3>
-          <progress value="0" max="90" id="progressBar-3"></progress>
+          <progress value="0" id="progressBar-3"></progress>
         </div>
       </div>
     </div>
     <script>
       window.addEventListener("load", (event) => {
+        let index = 0;
+        let time = 14;
         const link = "https://www.qu.edu.sa";
-
         const bars = document.querySelectorAll("progress");
 
-        bars.forEach((bar, index) => {
-          index === bars.length - 1
-            ? progres(getMaxValue(bar), bar, link)
-            : progres(getMaxValue(bar), bar);
+        bars.forEach((bar) => {
+          bar.setAttribute("max", `${time}`);
         });
 
-        function progres(time, bar, link = null) {
+        progres(bars[index]);
+
+        function progres(bar, url = null) {
+          if (index == bars.length) {
+            return;
+          }
+
           let timeleft = time;
           let downloadTimer = setInterval(function () {
             if (timeleft <= 0) {
@@ -71,16 +76,18 @@
             }
             bar.value = time - timeleft;
             timeleft -= 1;
+
             if (timeleft == 0) {
-              if (link) {
-                document.location.href = link;
+              index += 1;
+              if (url) {
+                document.location.href = url;
+              } else if (index === bars.length - 1) {
+                progres(bars[index], link);
+              } else {
+                progres(bars[index]);
               }
             }
           }, 1000);
-        }
-
-        function getMaxValue(barElement) {
-          return Number(barElement.getAttribute("max"));
         }
       });
     </script>
