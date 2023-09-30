@@ -1,30 +1,41 @@
 :root {
-  --progress-bar-clr: rgb(0, 255, 0);
-  --black-clr: #000000;
-  --white-clr: #ffffff;
+  --progress-bar-clr: hsl(120, 100%, 50%);
+  --black-clr: hsl(0, 0%, 0%);
+  --white-clr: hsl(0, 0%, 100%);
+  --font-family: "Oswald", sans-serif; /**/
 }
 
 *,
 *::after,
 *::before {
+  box-sizing: border-box;
+}
+
+body {
   margin: 0;
   padding: 0;
   background-color: var(--black-clr);
   color: var(--white-clr);
-  font-family: "Oswald", sans-serif;
+  font-family: var(--font-family);
 }
 
-h1,
-h3 {
+h1 {
   margin-bottom: 1rem;
   width: fit-content;
   margin-inline: auto;
+  font-size: clamp(1.6rem, 1.2383rem + 2.243vw, 2.5rem);
+}
+
+h3 {
+  margin: 0;
+  padding-bottom: 0.5rem;
 }
 
 .contianer {
   max-width: 1400px;
   height: 400px;
   margin-inline: auto;
+  padding-top: 1.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,7 +43,11 @@ h3 {
 
 .progressBar-div {
   display: flex;
+  gap: 5px;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  padding-bottom: 1.8rem;
 }
 
 progress::-moz-progress-bar {
@@ -50,7 +65,7 @@ progress[value] {
   -webkit-appearance: none;
   appearance: none;
 
-  width: 200px;
+  width: min(50vw, 700px);
   height: 20px;
-  border-radius: 3px;
+  border-radius: 5px;
 }

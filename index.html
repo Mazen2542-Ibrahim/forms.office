@@ -7,8 +7,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="icon" href="./icons8-evil-48.png" />
     <!-- Font -->
-    <link
+    <!-- <link
       href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
+      rel="stylesheet"
+    /> -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
       rel="stylesheet"
     />
     <title>You're Hacked 😈</title>
@@ -19,24 +26,50 @@
       <div class="content">
         <h1>You have been hacked 😈</h1>
         <div class="progressBar-div">
-          <progress value="0" max="10" id="progressBar"></progress>
+          <h3>Decrypting...</h3>
+          <progress value="0" max="10" id="progressBar-1"></progress>
         </div>
-      </div>
+        <div class="progressBar-div">
+          <h3>Loading...</h3>
+          <progress value="0" max="30" id="progressBar-2"></progress>
+        </div>
+        <div class="progressBar-div">
+          <h3>Redirecting...</h3>
+          <progress value="0" max="40" id="progressBar-3"></progress>
+        </div>
       </div>
     </div>
     <script>
       window.addEventListener("load", (event) => {
-        var timeleft = 10;
-        var downloadTimer = setInterval(function(){
-        if(timeleft <= 0){
-          clearInterval(downloadTimer);
+        const link = "https://www.qu.edu.sa";
+
+        const barOne = document.getElementById("progressBar-1");
+        const barTwo = document.getElementById("progressBar-2");
+        const barThree = document.getElementById("progressBar-3");
+
+        progres(getMaxValue(barOne), barOne);
+        progres(getMaxValue(barTwo), barTwo);
+        progres(getMaxValue(barThree), barThree, link);
+
+        function progres(time, bar, link = null) {
+          let timeleft = time;
+          let downloadTimer = setInterval(function () {
+            if (timeleft <= 0) {
+              clearInterval(downloadTimer);
+            }
+            bar.value = time - timeleft;
+            timeleft -= 1;
+            if (timeleft == 0) {
+              if (link) {
+                document.location.href = link;
+              }
+            }
+          }, 1000);
         }
-        document.getElementById("progressBar").value = 10 - timeleft;
-        timeleft -= 1;
-        if (timeleft == 0){
-          document.location.href = "https://www.qu.edu.sa";
+
+        function getMaxValue(barElement) {
+          return Number(barElement.getAttribute("max"));
         }
-        }, 1000);     
       });
     </script>
   </body>
