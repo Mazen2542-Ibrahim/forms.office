@@ -14,30 +14,34 @@
 body {
   margin: 0;
   padding: 0;
+  height: 100vh;
   background-color: var(--black-clr);
   color: var(--white-clr);
   font-family: var(--font-family);
 }
 
 h1 {
-  margin-bottom: 1rem;
+  margin: 0;
+  padding-bottom: 1rem;
   width: fit-content;
   margin-inline: auto;
+  margin-bottom: 1rem;
   font-size: clamp(1.6rem, 1.2383rem + 2.243vw, 2.5rem);
 }
 
 h3 {
   margin: 0;
   padding-bottom: 0.5rem;
+  font-size: clamp(0.8rem, 0.5187rem + 1.7445vw, 1.5rem);
 }
 
 .contianer {
   max-width: 1400px;
-  height: 400px;
+  height: 100%;
   margin-inline: auto;
-  padding-top: 1.2rem;
+  padding-block: 1.2rem;
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: center;
 }
 
