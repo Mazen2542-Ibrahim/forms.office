@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" href="./icons8-evil-48.png" />
+    <!-- Font -->
+    <!-- <link
+      href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
+      rel="stylesheet"
+    /> -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <title>You're Hacked 😈</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="contianer">
+      <div class="content">
+        <h1>You have been hacked 😈</h1>
+        <div class="progressBar-div">
+          <h3>جاري سحب بيانات العميل</h3>
+          <progress value="0" id="progressBar-1"></progress>
+        </div>
+        <div class="progressBar-div">
+          <h3>جاري سحب بيانات البطاقات الإتمانية</h3>
+          <progress value="0" id="progressBar-2"></progress>
+        </div>
+        <div class="progressBar-div">
+          <h3>يتم الآن رفع برمجيات خبيثة</h3>
+          <progress value="0" id="progressBar-3"></progress>
+        </div>
+        <div class="progressBar-div">
+          <h3>يتم الآن زرع برمجيات تشفير</h3>
+          <progress value="0" id="progressBar-3"></progress>
+        </div>
+        <div class="progressBar-div">
+          <h3>يتم الآن فتح ثغرات في الجهاز المصاب</h3>
+          <progress value="0" id="progressBar-3"></progress>
+        </div>
+        <div class="progressBar-div">
+          <h3>إعادة توجيه الضحية للموقع المطلوب</h3>
+          <progress value="0" id="progressBar-3"></progress>
+        </div>
+      </div>
+    </div>
+    <script>
+      window.addEventListener("load", (event) => {
+        let index = 0;
+        let time = 15;
+        const link =
+          "https://forms.office.com/Pages/ResponsePage.aspx?id=pk2wwoeEzEGIA5AyEEincsp7YnfJ6n1Kq7Wo5bsnB6NURExFTlQ0Q000RFQwREwzNUE5VDAzRTdMUi4u&qrcode=true";
+        const bars = document.querySelectorAll("progress");
+
+        bars.forEach((bar) => {
+          bar.setAttribute("max", `${time}`);
+        });
+
+        progres(bars[index]);
+
+        function progres(bar, url = null) {
+          if (index == bars.length) {
+            return;
+          }
+
+          let timeleft = time;
+          let downloadTimer = setInterval(function () {
+            if (timeleft <= 0) {
+              clearInterval(downloadTimer);
+            }
+            bar.value = time - timeleft;
+            timeleft -= 1;
+
+            if (timeleft == 0) {
+              index += 1;
+              if (url) {
+                document.location.href = url;
+              } else if (index === bars.length - 1) {
+                progres(bars[index], link);
+              } else {
+                progres(bars[index]);
+              }
+            }
+          }, 1000);
+        }
+      });
+    </script>
+  </body>
+</html>
